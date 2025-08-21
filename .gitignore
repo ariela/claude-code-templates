@@ -199,5 +199,11 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,macos,git,visualstudiocode,intellij+all
 
+# mise
+.mise.toml
+
 # プロジェクト特有設定
 *.iml
+
+# 一時ファイル
+.tmp/

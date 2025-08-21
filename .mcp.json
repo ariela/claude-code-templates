@@ -1,0 +1,55 @@
+{
+  "mcpServers": {
+    "context7": {
+      "type": "stdio",
+      "command": "mise",
+      "args": [
+        "exec",
+        "--",
+        "npx",
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "env": {}
+    },
+    "serena": {
+      "type": "stdio",
+      "command": "mise",
+      "args": [
+        "exec",
+        "--",
+        "uvx",
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server"
+      ],
+      "env": {}
+    },
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "mise",
+      "args": [
+        "exec",
+        "--",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "env": {}
+    },
+    "firecrawl": {
+      "type": "stdio",
+      "command": "mise",
+      "args": [
+        "exec",
+        "--",
+        "npx",
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "env": {
+      }
+    }
+  }
+}
