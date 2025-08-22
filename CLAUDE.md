@@ -1,89 +1,108 @@
-## プロジェクト概要
+## Project Overview
 { ここにプロジェクトの概要を記載する }
 
-## 実行原則【必須遵守】
+## Technology Stack
+### Frontend
+- **Language**: {使用する言語とそのバージョン}
+- **Framework/Library**: {使用するフレームワークやライブラリ}
+- **Architecture**: {実装アーキテクチャ}
+- **Testing**: {テストに使用するライブラリ等}
 
-### 言語・出力
-- **思考**: 英語で思考し、日本語で表示
-- **通知**: 全TODO完了時は `afplay /System/Library/Sounds/Sosumi.aiff` で通知
+### Backend
+- **Language**: {使用する言語とそのバージョン}
+- **Framework/Library**: {使用するフレームワークやライブラリ}
+- **Architecture**: {実装アーキテクチャ}
+- **Testing**: {テストに使用するライブラリ等}
+- **Database**: {使用するデータベース等}
 
-### 批判的思考
-- **検証姿勢**: ユーザーの提案に対して批判的・建設的な視点で検証
-- **代替案提示**: より効果的・効率的な解決策が存在する場合は積極的に提案
-- **根拠明示**: 反対意見や代替案を提示する際は、具体的な理由と根拠を明確に説明
+## Execution Principles [MANDATORY]
 
-### 作業管理
-- **タスク管理**: 複数タスクがある場合は `TodoWrite` でタスク管理
-- **段階実行**: 小さな単位で段階的実行・確認を繰り返す
+### Language & Output
+- **Thinking**: Think in English, display in Japanese
+- **Notification**: Notify with `afplay /System/Library/Sounds/Sosumi.aiff` when all TODOs are completed
 
-### 修正手順
-1. **修正前**: `find_referencing_symbols` で影響範囲確認
-2. **修正中**: 段階的修正・動作確認の反復
-3. **修正後**: 既存動作の正常性確認
+### Critical Thinking
+- **Verification Stance**: Verify user proposals with critical and constructive perspective
+- **Alternative Proposals**: Actively propose when more effective/efficient solutions exist
+- **Rationale Clarification**: Clearly explain specific reasons and rationale when presenting opposing views or alternatives
 
-### 問題対応
-- **即座復旧**: 異常検出時は前の安定状態に即座復旧
-- **再分析**: 原因分析後に修正手順を再実行
+### Task Management
+- **Task Management**: Use `TodoWrite` for task management when multiple tasks exist
+- **Phased Execution**: Repeat execution and confirmation in small units
 
-## ツール選択基準
+### Modification Procedure
+1. **Before Modification**: Check impact scope with `find_referencing_symbols`
+2. **During Modification**: Iterate phased modifications and operation checks
+3. **After Modification**: Confirm normal operation of existing features
 
-### ソースコード操作
-- **開始**: serena使用
-- **失敗時**: 3回連続失敗後にEditに切り替え
-- **復帰**: Edit使用後、次回は必ずserenaから開始
-- **除外**: ドキュメントファイル（*.md, *.txt, *.yml）はEdit直接使用
+### Problem Response
+- **Immediate Recovery**: Immediately restore to previous stable state upon anomaly detection
+- **Re-analysis**: Re-execute modification procedure after cause analysis
 
-### Web情報収集
-- **優先**: firecrawl使用
-- **修正支援**: `/fix [問題詳細]` で2段階プロセス実行
-  1. **Planモード**: Context7 → firecrawl → Web検索で情報収集→修正プラン提示
-  2. **実行モード**: 承認後に実際の修正作業実施
+## Tool Selection Criteria
 
-## ファイル管理ルール
+### Source Code Operations
+- **Start**: Use serena
+- **On Failure**: Switch to Edit after 3 consecutive failures
+- **Recovery**: Always start with serena next time after using Edit
+- **Exclusion**: Use Edit directly for document files (*.md, *.txt, *.yml)
 
-### 一時ファイル
-- **保存先**: `.tmp/` ディレクトリに限定
-- **命名**: `YYYY-MM-DD_HH-MM-SS_[目的].md` 形式
-- **削除**: タスク完了時に `rm .tmp/[filename]` 実行
+### Memory Management
+- **Recording Timing**: Save important analysis results, design decisions, and complex problem-solving procedures with `write_memory`
+- **Reference Timing**: Recover state with `list_memories` → `read_memory` after context compression, long time elapsed, or task resumption
+- **Naming Convention**: Use meaningful names in `[Date]_[Task Type]_[Summary]` format
 
-### .gitignore追加
-- **対象**: 機密情報・一時ファイル・ログ・ビルド成果物
-- **実行**: ファイル作成時に `.gitignore` に追加、`git status` で除外確認
+### Web Information Collection
+- **Priority**: Use firecrawl
+- **Fix Support**: Execute 2-stage process with `/fix [problem details]`
+  1. **Plan Mode**: Context7 → firecrawl → Web search for information gathering → Present fix plan
+  2. **Execution Mode**: Actual fix work after approval
 
-## 品質保証原則【設計時必須】
+## File Management Rules
+
+### Temporary Files
+- **Storage Location**: Limited to `.tmp/` directory
+- **Naming**: `YYYY-MM-DD_HH-MM-SS_[purpose].md` format
+- **Deletion**: Execute `rm .tmp/[filename]` upon task completion
+
+### .gitignore Addition
+- **Target**: Sensitive information, temporary files, logs, build artifacts
+- **Execution**: Add to `.gitignore` when creating files, confirm exclusion with `git status`
+
+## Quality Assurance Principles [Required for Design]
 
 ### 1. TDD (Test Driven Development)
-- **手順**: Red → Green → Refactor の順序で実行
-- **実行**: 機能実装前に必ずテストケースを作成
+- **Procedure**: Execute in Red → Green → Refactor order
+- **Execution**: Always create test cases before implementing features
 
 ### 2. MVC (Model-View-Controller)
-- **分離**: データ処理・表示・制御ロジックを別ファイルに配置
-- **依存**: View → Controller → Model の一方向依存を維持
+- **Separation**: Place data processing, display, and control logic in separate files
+- **Dependency**: Maintain one-way dependency of View → Controller → Model
 
-### 3. SOLID原則
-- **S** (Single Responsibility): 1クラス・1関数は1つの責任のみ
-- **O** (Open/Closed): 既存コード変更せず拡張で機能追加
-- **D** (Dependency Inversion): 具象クラスではなくインターフェースに依存
+### 3. SOLID Principles
+- **S** (Single Responsibility): One class/function has only one responsibility
+- **O** (Open/Closed): Add features through extension without modifying existing code
+- **D** (Dependency Inversion): Depend on interfaces, not concrete classes
 
 ### 4. DRY (Don't Repeat Yourself)
-- **実行**: 同じロジックを2箇所で発見時は共通関数・クラスに抽出
-- **判定**: 3行以上の類似コードは抽象化対象
+- **Execution**: Extract to common function/class when same logic found in 2 places
+- **Criteria**: Similar code of 3+ lines is abstraction target
 
 ### 5. YAGNI (You Aren't Gonna Need It)
-- **制限**: 現在の要件に必要な機能のみ実装
-- **判断**: 「将来使うかも」の機能は実装禁止
+- **Restriction**: Implement only features necessary for current requirements
+- **Judgment**: Features for "might use in future" are prohibited
 
 ### 6. KISS (Keep It Simple)
-- **選択**: 複数の解決策から最もシンプルなものを選択
-- **目標**: 他の開発者が容易に理解できるコードを優先
+- **Selection**: Choose the simplest solution from multiple options
+- **Goal**: Prioritize code easily understood by other developers
 
-## コンテキスト別参照
+## Context-Based References
 
-以下のコンテキストでは該当ドキュメントを参照する。
+Refer to corresponding documents in the following contexts.
 
-| コンテキスト | 参照ファイル | 目的 |
+| Context | Reference File | Purpose |
 |:-----------|:-----------|:-----|
-| ビルド | `.claude/CLAUDE_COMMANDS.md` | ビルド実施のためのコマンドを確認する |
-| ソースコード操作 | `.claude/CLAUDE_CODE_GUIDELINE.md` | 開発に従うべきコードスタイルを確認する |
-| テスト | `.claude/CLAUDE_COMMANDS.md`, `.claude/CLAUDE_TEST_FLOW.md` | テスト実施のためのコマンド・手順を確認する |
-| セキュリティ | `.claude/CLAUDE_SECURITY.md` | セキュリティを考慮する際に必要な事項を確認する |
+| Build | `.claude/CLAUDE_COMMANDS.md` | Confirm commands for build execution |
+| Source Code Operations | `.claude/CLAUDE_CODE_GUIDELINE.md` | Confirm code style to follow in development |
+| Test | `.claude/CLAUDE_COMMANDS.md`, `.claude/CLAUDE_TEST_FLOW.md` | Confirm commands and procedures for test execution |
+| Security | `.claude/CLAUDE_SECURITY.md` | Confirm necessary items when considering security |
